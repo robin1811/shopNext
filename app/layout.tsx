@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+
+import Nav from '@/components/navigation/nav'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,9 +29,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      {/* <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}> */}
+      <body className={cn(
+          "px-6 md:px-12 max-w-7xl mx-auto",                        // example override
+          geistSans.variable,                  // your font CSS variable
+          geistMono.variable,
+          "antialiased"                        // always include this
+        )}>
+        <Nav></Nav>
         {children}
       </body>
     </html>
