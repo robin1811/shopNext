@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1748490153507,
+      "tag": "0000_groovy_skreet",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1748583879917,
+      "tag": "0001_gifted_johnny_blaze",
+      "breakpoints": true
+    }
+  ]
+}
