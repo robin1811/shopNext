@@ -1,13 +1,13 @@
 'use client'
 
 import { useForm } from "react-hook-form"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../shopnext/components/ui/form"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import {zodResolver} from '@hookform/resolvers/zod'
-import { AuthCard } from "../shopnext/components/auth/auth-card"
+import { AuthCard } from "../auth/auth-card"
 import { LoginSchema } from "@/types/login-schema"
 import * as z from 'zod'
-import { Input } from "../shopnext/components/ui/input"
-import { Button } from "../shopnext/components/ui/button"
+import { Input } from "../ui/input"
+import { Button } from "../ui/button"
 import Link from "next/link"
 import { emailSignIn } from "@/server/actions/email-signin"
 import { useAction } from "next-safe-action/hooks"
