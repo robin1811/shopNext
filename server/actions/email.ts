@@ -16,7 +16,7 @@ const domain = getBaseURL();
 //         html: `<p>Click to <a href='${confirmLink}'>confirm your email</a></p>`
 //     }) 
 //     if(error) return error
-//     if(data) return data
+//     if(data) return data`
 // }
 
 export const sendVerificationEmail = async (email: string, token: string) => {
