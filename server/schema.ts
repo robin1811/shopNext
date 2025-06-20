@@ -5,24 +5,33 @@ import {
   text,
   primaryKey,
   integer,
-  serial
+  serial,
+  pgEnum
 } from "drizzle-orm/pg-core"
 
 import type { AdapterAccount } from "next-auth/adapters"
+import {createId} from '@paralleldrive/cuid2'
 
-export const posts =  pgTable('posts',{
-    id : serial('id').primaryKey().notNull(),
-    title : text('title').notNull(),
-})
+// export const posts =  pgTable('posts',{
+//     id : serial('id').primaryKey().notNull(),
+//     title : text('title').notNull(),
+// })
+
+export const RoleEnum = pgEnum("roles", ["user", "admin"])
 
 export const users = pgTable("user", {
   id: text("id")
+    .notNull()
     .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
+    .$defaultFn(() => createId()),
   name: text("name"),
-  email: text("email").unique(),
+  email: text("email").notNull(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
+  password: text("password"),
+  twoFactorEnabled: boolean("twoFactorEnabled").default(false),
+  role: RoleEnum("roles").default("user"),
+
 })
  
 export const accounts = pgTable(
@@ -50,3 +59,4 @@ export const accounts = pgTable(
     },
   ]
 )
+
