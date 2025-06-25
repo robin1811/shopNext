@@ -106,9 +106,9 @@ export const RegisterForm = () => {
                     />
                     <FormSucces message= {success}/>
                     <FormError message= {error}/>
-                    <Button size={'sm'} variant={"link"} asChild>
-                        <Link href="auth/reset">Forgot your password</Link>
-                    </Button>
+                    {/* <Button size={'sm'} variant={"link"} asChild>
+                        <Link href="/auth/reset">Forgot your password</Link>
+                    </Button> */}
  
                      </div>
                     <Button type="submit" className={cn("w-full my-2", status=== 'executing' ? 'animate-pulse' : "")}>Register</Button>
