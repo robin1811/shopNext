@@ -17,10 +17,14 @@ export const emailSignIn = action(LoginSchema, async ({email, password, code}) =
         const existingUser = await db.query.users.findFirst({
             where : eq(users.email,email)
         })
+        if (!existingUser) {
+            return { error: "Email not found" };
+        }
         // checking email
         if(existingUser?.email !== email){
             return{error : "Email not found"}
         }
+        
         // checking if user is verified
         if (!existingUser?.emailVerified) {
             const verificationToken = await generateEmailVerificationToken(existingUser.email)
