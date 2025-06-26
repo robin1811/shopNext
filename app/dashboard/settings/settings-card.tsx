@@ -43,6 +43,7 @@ import { useState } from "react"
 
 export default function SettingsCard(session: SettingsForm){
     // console.log(session)
+    console.log(session.session.user);
     const [error, setError] = useState<string | undefined>()
     const [success, setSuccess] = useState<string | undefined>()
     const [avatarUploading, setAvatarUploading] = useState(false)
