@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 
 import Nav from '@/components/navigation/nav'
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       {/* <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}> */}
       <body className={cn(
           "px-6 md:px-12 max-w-7xl mx-auto",                        // example override
@@ -36,8 +37,14 @@ export default function RootLayout({
           geistMono.variable,
           "antialiased"                        // always include this
         )}>
-        <Nav></Nav>
-        {children}
+          <ThemeProvider 
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange>
+              <Nav></Nav>
+              {children}
+          </ThemeProvider>
       </body>
     </html>
   );
