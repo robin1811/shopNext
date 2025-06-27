@@ -38,6 +38,8 @@ import { FormError } from "@/components/auth/form-error"
 import { FormSucces } from "@/components/auth/form-success"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import { useAction } from "next-safe-action/hooks"
+import { settings } from "@/server/actions/settings"
 
 
 
@@ -56,13 +58,23 @@ export default function SettingsCard(session: SettingsForm){
       newPassword: undefined,
       name: session.session.user?.name || undefined,
       email: session.session.user?.email || undefined,
-    //   image: session.session.user.image || undefined,
-    //   isTwoFactorEnabled: session.session.user?.isTwoFactorEnabled || undefined,
+      image: session.session.user.image || undefined,
+      isTwoFactorEnabled: session.session.user?.isTwoFactorEnabled || undefined,
+    },
+  })
+
+  const { execute, status } = useAction(settings, {
+    onSuccess: (data) => {
+      if (data?.success) setSuccess(data.success)
+      if (data?.error) setError(data.error)
+    },
+    onError: (error) => {
+      setError("Something went wrong")
     },
   })
 
   const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
-    // execute(values)
+    execute(values)
   }
 
     return(
@@ -142,7 +154,7 @@ export default function SettingsCard(session: SettingsForm){
                     <Input
                       placeholder="********"
                       disabled={
-                        status === "executing"
+                        status === "executing" || session.session.user.isOAuth
                       }
                       {...field}
                     />
@@ -162,7 +174,7 @@ export default function SettingsCard(session: SettingsForm){
                     <Input
                       placeholder="*******"
                       disabled={
-                        status === "executing"
+                        status === "executing" || session.session.user.isOAuth
                       }
                       {...field}
                     />
@@ -184,7 +196,7 @@ export default function SettingsCard(session: SettingsForm){
                   <FormControl>
                     <Switch
                       disabled={
-                        status === "executing"
+                        status === "executing" || session.session.user.isOAuth === true
                         }
                       checked={field.value}
                       onCheckedChange={field.onChange}
