@@ -38,6 +38,10 @@ import { FormError } from "@/components/auth/form-error"
 import { FormSucces } from "@/components/auth/form-success"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import { useAction } from "next-safe-action/hooks"
+import { settings } from "@/server/actions/settings"
+import { UploadButton } from "@/app/api/uploadthing/upload"
+
 
 
 
@@ -56,13 +60,24 @@ export default function SettingsCard(session: SettingsForm){
       newPassword: undefined,
       name: session.session.user?.name || undefined,
       email: session.session.user?.email || undefined,
-    //   image: session.session.user.image || undefined,
-    //   isTwoFactorEnabled: session.session.user?.isTwoFactorEnabled || undefined,
+      image: session.session.user.image || undefined,
+      isTwoFactorEnabled: session.session.user?.isTwoFactorEnabled || undefined,
+    },
+  })
+
+  const { execute, status } = useAction(settings, {
+    onSuccess: (data) => {
+      if (data?.success) setSuccess(data.success)
+      if (data?.error) setError(data.error)
+    },
+    onError: (error) => {
+      setError("Something went wrong")
     },
   })
 
   const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
-    // execute(values)
+    execute(values)
+    // console.log(values)
   }
 
     return(
@@ -118,6 +133,34 @@ export default function SettingsCard(session: SettingsForm){
                                     alt="User Image"
                                 />
                                 )}
+
+                            <UploadButton
+                              className="scale-75 ut-button:ring-primary  ut-label:bg-red-50  ut-button:bg-primary/75  hover:ut-button:bg-primary/100 ut:button:transition-all ut-button:duration-500  ut-label:hidden ut-allowed-content:hidden"
+                              endpoint="avatarUploader"
+                              onUploadBegin={() => {
+                                setAvatarUploading(true)
+                              }}
+                              onUploadError={(error) => {
+                                form.setError("image", {
+                                  type: "validate",
+                                  message: error.message,
+                                })
+                                setAvatarUploading(false)
+                                return
+                              }}
+                              onClientUploadComplete={(res) => {
+                                form.setValue("image", res[0].url!)
+                                setAvatarUploading(false)
+                                return
+                              }}
+                              content={{
+                                button({ ready }) {
+                                  if (ready) return <div>Change Avatar</div>
+                                  return <div>Uploading...</div>
+                                },
+                              }}
+                            />
+
                             </div>
                             <FormControl>
                                 <Input
@@ -142,7 +185,7 @@ export default function SettingsCard(session: SettingsForm){
                     <Input
                       placeholder="********"
                       disabled={
-                        status === "executing"
+                        status === "executing" || session.session.user.isOAuth
                       }
                       {...field}
                     />
@@ -162,7 +205,7 @@ export default function SettingsCard(session: SettingsForm){
                     <Input
                       placeholder="*******"
                       disabled={
-                        status === "executing"
+                        status === "executing" || session.session.user.isOAuth
                       }
                       {...field}
                     />
@@ -184,7 +227,7 @@ export default function SettingsCard(session: SettingsForm){
                   <FormControl>
                     <Switch
                       disabled={
-                        status === "executing"
+                        status === "executing" || session.session.user.isOAuth === true
                         }
                       checked={field.value}
                       onCheckedChange={field.onChange}
