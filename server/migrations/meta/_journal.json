@@ -57,6 +57,13 @@
       "when": 1750996920027,
       "tag": "0007_complete_leopardon",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1751406982100,
+      "tag": "0008_complete_bloodaxe",
+      "breakpoints": true
     }
   ]
 }

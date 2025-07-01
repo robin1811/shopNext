@@ -1,7 +1,5 @@
-export default function AddProduct(){
-    return(
-        <div>
-            <h1>this is the create page</h1>
-        </div>
-    )
+import ProductForm from "./product-form"
+
+export default async function AddProduct() {
+  return <ProductForm />
 }
