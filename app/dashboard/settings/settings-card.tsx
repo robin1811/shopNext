@@ -221,6 +221,3 @@ export default function SettingsCard(session: SettingsForm){
         </Card>
     )
 }
-
-
-
