@@ -40,6 +40,7 @@ import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { useAction } from "next-safe-action/hooks"
 import { settings } from "@/server/actions/settings"
+
 import { UploadButton } from "@/app/api/uploadthing/upload"
 
 
@@ -77,8 +78,8 @@ export default function SettingsCard(session: SettingsForm){
 
   const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
     execute(values)
-    // console.log(values)
-  }
+
+
 
     return(
         <Card>
@@ -252,6 +253,3 @@ export default function SettingsCard(session: SettingsForm){
         </Card>
     )
 }
-
-
-

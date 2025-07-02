@@ -1,3 +1,4 @@
+
 'use server'
 
 import { LoginSchema } from '@/types/login-schema';
@@ -94,28 +95,4 @@ export const emailSignIn = action(LoginSchema, async ({email, password, code}) =
 })
 
 
-// 'use server'
 
-// import { LoginSchema } from '@/types/login-schema';
-// import { createSafeActionClient } from 'next-safe-action';
-// import type { z } from 'zod';
-
-// const actionClient = createSafeActionClient();
-
-// export const emailSignIn = actionClient.action(
-//   LoginSchema,
-//   async ({ email, password, code }: z.infer<typeof LoginSchema>) => {
-//     console.log(email, password, code);
-//     return { email };
-//   }
-// );
-// email-signin.ts
-// 'use server'
-
-// import { createSafeAction } from 'next-safe-action';
-// import { LoginSchema } from '@/types/login-schema';
-
-// export const emailSignIn = createSafeAction(LoginSchema, async ({ email, password, code }) => {
-//   console.log(email, password, code);
-//   return { email };
-// });
