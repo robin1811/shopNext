@@ -22,8 +22,12 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { DollarSign } from "lucide-react"
+import Tiptap from "./tiptap"
 import { zodResolver } from "@hookform/resolvers/zod"
-
+import { useAction } from "next-safe-action/hooks"
+import { createProduct } from "@/server/actions/create-products"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useEffect } from "react"
 
 export default function ProductForm() {
   const form = useForm<zProductSchema>({
@@ -33,23 +37,39 @@ export default function ProductForm() {
       description: "",
       price: 0,
     },
-
   })
 
 
 
+
+
+  const { execute, status } = useAction(createProduct, {
+
+    onSuccess : (data) => {
+      if(data?.success) {
+        console.log(data.success)
+      }
+    },
+    onError : (error) =>{
+      console.error(error)
+    }
+  })
+
+  async function onSubmit(values: zProductSchema) {
+    execute(values)
+  }
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
+        <CardTitle> Card Title</CardTitle>
         <CardDescription>
-
             Card Description
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={() => console.log('hello')} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="title"
@@ -70,6 +90,7 @@ export default function ProductForm() {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
+                    <Tiptap val={field.value} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -108,8 +129,7 @@ export default function ProductForm() {
                 !form.formState.isDirty
               }
               type="submit"
-            >
-             Submit
+            >Submit
             </Button>
           </form>
         </Form>
