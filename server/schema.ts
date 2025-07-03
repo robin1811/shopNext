@@ -1,3 +1,4 @@
+
 import {
   boolean,
   timestamp,
@@ -104,4 +105,3 @@ export const twoFactorTokens = pgTable(
   (vt) => ({
     compoundKey: primaryKey({ columns: [vt.id, vt.token] }),
   })
-)
