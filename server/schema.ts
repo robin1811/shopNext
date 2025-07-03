@@ -7,9 +7,9 @@ import {
   primaryKey,
   integer,
   serial,
-
   pgEnum,
   real
+
 
 } from "drizzle-orm/pg-core"
 

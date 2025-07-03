@@ -161,3 +161,4 @@ export const generateTwoFactorToken = async (email: string) => {
     return null
   }
 }
+
