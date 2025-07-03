@@ -44,8 +44,6 @@ import { settings } from "@/server/actions/settings"
 import { UploadButton } from "@/app/api/uploadthing/upload"
 
 
-
-
 export default function SettingsCard(session: SettingsForm){
     // console.log(session)
     console.log(session.session.user);
