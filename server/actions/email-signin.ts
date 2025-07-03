@@ -94,5 +94,3 @@ export const emailSignIn = action(LoginSchema, async ({email, password, code}) =
     
 })
 
-
-

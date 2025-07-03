@@ -45,7 +45,6 @@ import { UploadButton } from "@/app/api/uploadthing/upload"
 
 
 
-
 export default function SettingsCard(session: SettingsForm){
     // console.log(session)
     console.log(session.session.user);
@@ -79,6 +78,8 @@ export default function SettingsCard(session: SettingsForm){
   const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
     execute(values)
 
+
+  }
 
 
     return(
