@@ -7,7 +7,10 @@ import {
   primaryKey,
   integer,
   serial,
-  pgEnum
+
+  pgEnum,
+  real
+
 } from "drizzle-orm/pg-core"
 
 import type { AdapterAccount } from "next-auth/adapters"
@@ -105,3 +108,13 @@ export const twoFactorTokens = pgTable(
   (vt) => ({
     compoundKey: primaryKey({ columns: [vt.id, vt.token] }),
   })
+)
+
+export const products = pgTable("products", {
+  id: serial("id").primaryKey(),
+  description: text("description").notNull(),
+  title: text("title").notNull(),
+  created: timestamp("created").defaultNow(),
+  price: real("price").notNull(),
+})
+
