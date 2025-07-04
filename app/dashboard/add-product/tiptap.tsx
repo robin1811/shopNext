@@ -1,19 +1,23 @@
+
 "use client"
 
 import { Toggle } from "@/components/ui/toggle"
 import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import { Bold, Italic, List, ListOrdered, Strikethrough } from "lucide-react"
-import { useEffect } from "react"
+// import { useEffect } from "react"
 import { useFormContext } from "react-hook-form"
 import { Placeholder } from "@tiptap/extension-placeholder"
+import { useEffect, useRef } from "react"
 
 const Tiptap = ({ val }: { val: string }) => {
   const { setValue } = useFormContext()
+  
+  const isFirstUpdate = useRef(true)
   const editor = useEditor({
     extensions: [
       Placeholder.configure({
-        placeholder: "Add a description for your product",
+        placeholder: "Add a longer description for your products",
         emptyNodeClass:
           "first:before:text-gray-600 first:before:float-left first:before:content-[attr(data-placeholder)] first:before:pointer-events-none",
       }),
@@ -36,8 +40,12 @@ const Tiptap = ({ val }: { val: string }) => {
       const content = editor.getHTML()
       setValue("description", content, {
         shouldValidate: true,
-        shouldDirty: true,
+        // shouldDirty: true,
+         shouldDirty: !isFirstUpdate.current
       })
+      if (isFirstUpdate.current) {
+           isFirstUpdate.current = false
+  }
     },
     editorProps: {
       attributes: {

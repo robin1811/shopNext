@@ -1,5 +1,5 @@
-import createPost from "@/server/actions/create-post";
-import getPosts from "@/server/actions/get-posts";
+// import createPost from "@/server/actions/create-post";
+// import getPosts from "@/server/actions/get-posts";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
@@ -8,7 +8,8 @@ export default async function Home() {
   // console.log(success);
   return (
     <main>
-      <h1>Hey</h1>
+      {/* <h1>Hey</h1> */}
+      <h1>HomePage</h1>
     </main>
     
   )
