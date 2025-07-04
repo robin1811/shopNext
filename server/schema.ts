@@ -1,3 +1,4 @@
+
 import {
   boolean,
   timestamp,
@@ -8,6 +9,8 @@ import {
   serial,
   pgEnum,
   real
+
+
 } from "drizzle-orm/pg-core"
 
 import type { AdapterAccount } from "next-auth/adapters"
@@ -114,3 +117,4 @@ export const products = pgTable("products", {
   created: timestamp("created").defaultNow(),
   price: real("price").notNull(),
 })
+
