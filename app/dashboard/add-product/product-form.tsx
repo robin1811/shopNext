@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useForm } from "react-hook-form"
@@ -27,9 +28,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useAction } from "next-safe-action/hooks"
 import { createProduct } from "@/server/actions/create-products"
 import { useRouter, useSearchParams } from "next/navigation"
-import { useEffect } from "react"
-
-import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "sonner"
 
 
 export default function ProductForm() {
@@ -40,23 +39,29 @@ export default function ProductForm() {
       description: "",
       price: 0,
     },
-
+    mode: "onBlur",
   })
 
-
-
+  const router = useRouter()
 
 
   const { execute, status } = useAction(createProduct, {
-
-    onSuccess : (data) => {
-      if(data?.success) {
-        console.log(data.success)
+    onSuccess: (data) => {
+      if (data?.error) {
+        toast.error(data.error)
+      }
+      if (data?.success) {
+        router.push("/dashboard/products")
+        toast.success(data.success)
       }
     },
-    onError : (error) =>{
-      console.error(error)
-    }
+
+
+    onExecute: (data) => {
+  
+        toast.loading("Creating Product")
+
+    },
   })
 
   async function onSubmit(values: zProductSchema) {
@@ -66,23 +71,15 @@ export default function ProductForm() {
   return (
     <Card>
       <CardHeader>
-
-        <CardTitle> Card Title</CardTitle>
-        <CardDescription>
-
         <CardTitle>Card Title</CardTitle>
         <CardDescription>
-
+          
             Card Description
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-
-          <form onSubmit={() => console.log('hello')} className="space-y-4">
-
             <FormField
               control={form.control}
               name="title"
@@ -103,9 +100,7 @@ export default function ProductForm() {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-
                     <Tiptap val={field.value} />
-
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -144,12 +139,7 @@ export default function ProductForm() {
                 !form.formState.isDirty
               }
               type="submit"
-
             >Submit
-
-            >
-             Submit
-
             </Button>
           </form>
         </Form>
