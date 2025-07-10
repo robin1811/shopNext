@@ -18,7 +18,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      // "algoliasearch": ["./node_modules/algoliasearch/dist/algoliasearch"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../mahima/email-signin.ts", "../jatesh/form-error.tsx", "../jatesh/login-form.tsx", "../jatesh/form-success.tsx"],

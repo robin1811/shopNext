@@ -38,10 +38,10 @@ import { Button } from "@/components/ui/button"
 import { InputTags } from "./input-tags"
 import VariantImages from "./variant-images"
 import { useAction } from "next-safe-action/hooks"
-// import { createVariant } from "@/server/actions/create-variant"
+import { createVariant } from "@/server/actions/create-variant"
 import { toast } from "sonner"
 import { forwardRef, useEffect, useState } from "react"
-// import { deleteVariant } from "@/server/actions/delete-variant"
+import { deleteVariant } from "@/server/actions/delete-variant"
 
 type VariantProps = {
   children: React.ReactNode
@@ -67,71 +67,72 @@ export const ProductVariant = forwardRef<HTMLDivElement, VariantProps>(
 
     const [open, setOpen] = useState(false)
 
-    // const setEdit = () => {
-    //   if (!editMode) {
-    //     form.reset()
-    //     return
-    //   }
-    //   if (editMode && variant) {
-    //     form.setValue("editMode", true)
-    //     form.setValue("id", variant.id)
-    //     form.setValue("productID", variant.productID)
-    //     form.setValue("productType", variant.productType)
-    //     form.setValue("color", variant.color)
-    //     form.setValue(
-    //       "tags",
-    //       variant.variantTags.map((tag) => tag.tag)
-    //     )
-    //     form.setValue(
-    //       "variantImages",
-    //       variant.variantImages.map((img) => ({
-    //         name: img.name,
-    //         size: img.size,
-    //         url: img.url,
-    //       }))
-    //     )
-    //   }
-    // }
+    const setEdit = () => {
+      if (!editMode) {
+        form.reset()
+        return
+      }
+      // refill the form back when editing
+      if (editMode && variant) {
+        form.setValue("editMode", true)
+        form.setValue("id", variant.id)
+        form.setValue("productID", variant.productID)
+        form.setValue("productType", variant.productType)
+        form.setValue("color", variant.color)
+        form.setValue(
+          "tags",
+          variant.variantTags.map((tag) => tag.tag)
+        )
+        form.setValue(
+          "variantImages",
+          variant.variantImages.map((img) => ({
+            name: img.name,
+            size: img.size,
+            url: img.url,
+          }))
+        )
+      }
+    }
+    // to check if you are edit or not
+    useEffect(() => {
+      setEdit()
+    }, [variant])
 
-    // useEffect(() => {
-    //   setEdit()
-    // }, [variant])
+    const { execute, status } = useAction(createVariant, {
+      onExecute() {
+        toast.loading("Creating variant", { duration: 500 })
+        setOpen(false)
+      },
+      onSuccess(data) {
+        if (data?.error) {
+          toast.error(data.error)
+        }
+        if (data?.success) {
+          toast.success(data.success)
+        }
+      },
+    })
 
-    // const { execute, status } = useAction(createVariant, {
-    //   onExecute() {
-    //     toast.loading("Creating variant", { duration: 1 })
-    //     setOpen(false)
-    //   },
-    //   onSuccess(data) {
-    //     if (data?.error) {
-    //       toast.error(data.error)
-    //     }
-    //     if (data?.success) {
-    //       toast.success(data.success)
-    //     }
-    //   },
-    // })
-
-    // const variantAction = useAction(deleteVariant, {
-    //   onExecute() {
-    //     toast.loading("Deleting variant", { duration: 1 })
-    //     setOpen(false)
-    //   },
-    //   onSuccess(data) {
-    //     if (data?.error) {
-    //       toast.error(data.error)
-    //     }
-    //     if (data?.success) {
-    //       toast.success(data.success)
-    //     }
-    //   },
-    // })
+    const variantAction = useAction(deleteVariant, {
+      onExecute() {
+        toast.loading("Deleting variant", { duration: 300 })
+        setOpen(false)
+      },
+      onSuccess(data) {
+        if (data?.error) {
+          toast.error(data.error)
+        }
+        if (data?.success) {
+          toast.success(data.success)
+        }
+      },
+    })
 
     function onSubmit(values: z.infer<typeof VariantSchema>) {
       // Do something with the form values.
       // ✅ This will be type-safe and validated.
-        console.log(values)
-    //   execute(values)
+        // console.log(values)
+      execute(values)
     }
 
     return (
@@ -203,10 +204,10 @@ export const ProductVariant = forwardRef<HTMLDivElement, VariantProps>(
                   <Button
                     variant={"destructive"}
                     type="button"
-                    // disabled={variantAction.status === "executing"}
+                    disabled={variantAction.status === "executing"}
                     onClick={(e) => {
                       e.preventDefault()
-                    //   variantAction.execute({ id: variant.id })
+                      variantAction.execute({ id: variant.id })
                     }}
                   >
                     Delete Variant
