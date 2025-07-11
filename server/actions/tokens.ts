@@ -1,3 +1,4 @@
+
 "use server"
 
 import { eq } from "drizzle-orm"
@@ -160,3 +161,4 @@ export const generateTwoFactorToken = async (email: string) => {
     return null
   }
 }
+
