@@ -1,3 +1,4 @@
+
 import {
   boolean,
   timestamp,
@@ -8,6 +9,8 @@ import {
   serial,
   pgEnum,
   real
+
+
 } from "drizzle-orm/pg-core"
 
 import type { AdapterAccount } from "next-auth/adapters"
@@ -116,6 +119,7 @@ export const products = pgTable("products", {
   price: real("price").notNull(),
 })
 
+
 export const productVariants = pgTable("productVariants", {
   id: serial("id").primaryKey(),
   color: text("color").notNull(),
@@ -177,3 +181,4 @@ export const variantTagsRelations = relations(variantTags, ({ one }) => ({
     relationName: "variantTags",
   }),
 }))
+
