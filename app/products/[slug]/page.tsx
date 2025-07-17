@@ -14,6 +14,11 @@ import ProductShowcase from "@/components/products/product-showcase"
 // import Stars from "@/components/reviews/stars"
 
 import Reviews from "@/components/reviews/reviews"
+
+// import Reviews from "@/components/reviews/reviews"
+// import { getReviewAverage } from "@/lib/review-avarage"
+// import Stars from "@/components/reviews/stars"
+
 import { getReviewAverage } from "@/lib/review-average"
 // import Reviews from "@/components/reviews/reviews"
 // import { getReviewAverage } from "@/lib/review-avarage"
@@ -127,6 +132,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </div>
 
             {/* <AddCart /> */}
+
           </div>
         </section>
         {/* <Reviews productID={variant.productID} /> */}
@@ -135,12 +141,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 }
 
+
             <AddCart />
+
           </div>
         </section>
         <Reviews productID={variant.productID} />
       </main>
     )
   }
+
+}
+
 }}
 
