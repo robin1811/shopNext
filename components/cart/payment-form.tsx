@@ -84,7 +84,7 @@ export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
         return
       } else {
         setIsLoading(false)
-        console.log('save the order')
+        // console.log('save the order')
         execute({
           status: "pending",
           paymentIntentID: data.success.paymentIntentID,
@@ -104,7 +104,7 @@ export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
       <PaymentElement />
       <AddressElement options={{ mode: "shipping" }} />
       <Button
-        className="my-4  w-full"
+        className=" my-4 w-full"
         disabled={!stripe || !elements || isLoading}
       >
         {isLoading ? "Processing..." : "Pay now"}
