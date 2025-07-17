@@ -122,6 +122,7 @@ export const products = pgTable("products", {
 })
 
 
+
 export const productVariants = pgTable("productVariants", {
   id: serial("id").primaryKey(),
   color: text("color").notNull(),
@@ -189,6 +190,7 @@ export const variantTagsRelations = relations(variantTags, ({ one }) => ({
 }))
 
 }))
+
 
 
 
