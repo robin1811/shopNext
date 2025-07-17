@@ -16,7 +16,7 @@ import Stars from "@/components/reviews/stars"
 import AddCart from "@/components/cart/add-cart"
 // import AddCart from "@/components/cart/add-cart"
 
-// export const revalidate = 60
+export const revalidate = 60
 
 // function provided by nextjs to fetch everything before hand to put them into page
 export async function generateStaticParams() {

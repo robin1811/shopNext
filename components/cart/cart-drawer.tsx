@@ -38,8 +38,8 @@ export default function CartDrawer() {
           <ShoppingBag />
         </div>
       </DrawerTrigger>
-      <DrawerContent className="fixed bottom-0 left-0 max-h-70vh min-h-50vh">
-        <DrawerHeader>
+      <DrawerContent className="fixed bottom-0 left-0 max-h-[70vh] min-h-[50vh]">
+        <DrawerHeader >
           <CartMessage />
           {/* <h1>Cart Progress</h1> */}
         </DrawerHeader>
