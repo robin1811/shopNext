@@ -2,13 +2,27 @@
 // import getPosts from "@/server/actions/get-posts";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Products from "@/components/products/products";
+import { db } from "@/server";
 
 export default async function Home() {
   // const {success} = await getPosts();
   // console.log(success);
+  const data = await db.query.productVariants.findMany({
+    with: {
+      variantImages: true,
+      variantTags: true,
+      product: true,
+      // product : {
+        // columns : {price:true, id:true, title:true},
+      // }
+    },
+    orderBy: (productVariants, { desc }) => [desc(productVariants.id)],
+  })
   return (
     <main>
       {/* <h1>Hey</h1> */}
+      <Products variants={data} />
       <h1>HomePage</h1>
     </main>
     
