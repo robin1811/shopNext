@@ -23,6 +23,7 @@ import { getReviewAverage } from "@/lib/review-average"
 // import Reviews from "@/components/reviews/reviews"
 // import { getReviewAverage } from "@/lib/review-avarage"
 import Stars from "@/components/reviews/stars"
+
 import AddCart from "@/components/cart/add-cart"
 
 // import AddCart from "@/components/cart/add-cart"
@@ -132,6 +133,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </div>
 
             {/* <AddCart /> */}
+
 
           </div>
         </section>
