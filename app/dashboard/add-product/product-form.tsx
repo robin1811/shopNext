@@ -1,3 +1,4 @@
+
 // // "use client"
 
 // // import { useForm } from "react-hook-form"
@@ -361,6 +362,9 @@ import { toast } from "sonner"
 import { getProduct } from "@/server/actions/get-product"
 import { useEffect } from "react"
 
+import { zodResolver } from "@hookform/resolvers/zod"
+
+
 export default function ProductForm() {
   const form = useForm<zProductSchema>({
     resolver: zodResolver(ProductSchema),
@@ -369,7 +373,11 @@ export default function ProductForm() {
       description: "",
       price: 0,
     },
+
     mode: "onBlur",
+
+
+
   })
 
   const router = useRouter()
@@ -460,11 +468,25 @@ export default function ProductForm() {
           {editMode
             ? "Make changes to existing product"
             : "Add a brand new product"}
+
+
+        <CardTitle> Card Title</CardTitle>
+        <CardDescription>
+
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>
+
+            Card Description
+
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
+
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+
+          <form onSubmit={() => console.log('hello')} className="space-y-4">
+
             <FormField
               control={form.control}
               name="title"
@@ -485,7 +507,9 @@ export default function ProductForm() {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
+
                     <Tiptap val={field.value} />
+
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -524,8 +548,17 @@ export default function ProductForm() {
                 !form.formState.isDirty
               }
               type="submit"
+
             >
               {editMode ? "Save Changes" : "Create Product"}
+
+
+            >Submit
+
+            >
+             Submit
+
+
             </Button>
           </form>
         </Form>
@@ -533,4 +566,3 @@ export default function ProductForm() {
     </Card>
   )
 }
-

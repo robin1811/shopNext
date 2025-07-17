@@ -1,3 +1,14 @@
+
+'use client';
+
+export default function ProductVariant(){
+    return(
+        <div>
+            <h1>hey</h1>
+        </div>
+    )
+}
+
 // 'use client';
 
 // export default function ProductVariant(){
@@ -233,3 +244,4 @@ export const ProductVariant = forwardRef<HTMLDivElement, VariantProps>(
 )
 
 ProductVariant.displayName = "ProductVariant"
+
