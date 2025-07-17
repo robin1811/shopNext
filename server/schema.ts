@@ -9,11 +9,9 @@ import {
   serial,
   pgEnum,
 
+
   real,
   index
-
-
-
 
 } from "drizzle-orm/pg-core"
 
@@ -123,6 +121,7 @@ export const products = pgTable("products", {
   price: real("price").notNull(),
 })
 
+
 export const productVariants = pgTable("productVariants", {
   id: serial("id").primaryKey(),
   color: text("color").notNull(),
@@ -227,3 +226,4 @@ export const userRelations = relations(users, ({ many }) => ({
   reviews: many(reviews, { relationName: "user_reviews" }),
   // orders: many(orders, { relationName: "user_orders" }),
 }))
+
