@@ -34,6 +34,9 @@ export default function ProductShowcase({
     }
 
     api.on("slidesInView", (e) => {
+
+        console.log(e.slidesInView())
+
       setActiveThumbnail(e.slidesInView())
     })
   }, [api])
@@ -76,7 +79,11 @@ export default function ProductShowcase({
                       className={cn(
                         index === activeThumbnail[0]
                           ? "opacity-100"
+
                           : "opacity-75",
+
+                          : "opacity-60",
+
                         "rounded-md transition-all duration-300 ease-in-out cursor-pointer hover:opacity-75"
                       )}
                       width={72}

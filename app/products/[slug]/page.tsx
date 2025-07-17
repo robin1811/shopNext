@@ -8,9 +8,18 @@ import ProductType from "@/components/products/product-type"
 import ProductPick from "@/components/products/product-pick"
 // import ProductPick from "@/components/products/product-pick"
 import ProductShowcase from "@/components/products/product-showcase"
+
 // import Reviews from "@/components/reviews/reviews"
 // import { getReviewAverage } from "@/lib/review-avarage"
 // import Stars from "@/components/reviews/stars"
+
+import Reviews from "@/components/reviews/reviews"
+import { getReviewAverage } from "@/lib/review-average"
+// import Reviews from "@/components/reviews/reviews"
+// import { getReviewAverage } from "@/lib/review-avarage"
+import Stars from "@/components/reviews/stars"
+import AddCart from "@/components/cart/add-cart"
+
 // import AddCart from "@/components/cart/add-cart"
 
 // export const revalidate = 60
@@ -38,7 +47,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
     with: {
       product: {
         with: {
+
           // reviews: true,
+
+          reviews: true,
+
           productVariants: {
             with: { variantImages: true, variantTags: true },
           },
@@ -47,10 +60,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
     },
   })
 
+
   // if (variant) {
   //   // const reviewAvg = getReviewAverage(
   //     // variant?.product.reviews.map((r) => r.rating)
   //   )
+
+  if (variant) {
+    const reviewAvg = getReviewAverage(
+      variant?.product.reviews.map((r) => r.rating)
+    )
+
   if(variant){
 
   
@@ -60,17 +80,26 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <div className="flex-1">
             <ProductShowcase variants={variant.product.productVariants} />
 
+
             <h1>images</h1>
+
 
           </div>
           <div className="flex  flex-col flex-1">
             <h2 className="text-2xl font-bold">{variant?.product.title}</h2>
             <div>
               <ProductType variants={variant.product.productVariants} />
+
               {/* <Stars
                 rating={reviewAvg}
                 totalReviews={variant.product.reviews.length}
               /> */}
+
+              <Stars
+                rating={reviewAvg}
+                totalReviews={variant.product.reviews.length}
+              />
+
             </div>
             <Separator className="my-2" />
             <p className="text-2xl font-medium py-2">
@@ -96,6 +125,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 />
               ))}
             </div>
+
             {/* <AddCart /> */}
           </div>
         </section>
@@ -104,3 +134,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
     )
   }
 }
+
+            <AddCart />
+          </div>
+        </section>
+        <Reviews productID={variant.productID} />
+      </main>
+    )
+  }
+}}
+
