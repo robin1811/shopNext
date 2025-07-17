@@ -1,3 +1,4 @@
+
 'use server'
 
 import getBaseURL from "@/lib/base-url";
@@ -56,4 +57,5 @@ export const sendTwoFactorTokenByEmail = async (email: string,token: string) => 
   })
   if (error) return console.log(error)
   if (data) return data
+
 }
