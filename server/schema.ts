@@ -234,3 +234,4 @@ export const userRelations = relations(users, ({ many }) => ({
   // orders: many(orders, { relationName: "user_orders" }),
 }))
 
+
