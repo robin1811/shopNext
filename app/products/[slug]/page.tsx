@@ -79,6 +79,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <section className="flex flex-col lg:flex-row gap-4 lg:gap-12">
           <div className="flex-1">
             <ProductShowcase variants={variant.product.productVariants} />
+
+
+            <h1>images</h1>
+
+
           </div>
           <div className="flex  flex-col flex-1">
             <h2 className="text-2xl font-bold">{variant?.product.title}</h2>
