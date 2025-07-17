@@ -9,10 +9,9 @@ import {
   serial,
   pgEnum,
 
+
   real,
   index
-
-
 
 } from "drizzle-orm/pg-core"
 

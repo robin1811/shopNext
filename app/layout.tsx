@@ -44,9 +44,11 @@ export default function RootLayout({
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange>
-              <Nav></Nav>
-              <Toaster></Toaster>
-              {children}
+              <div className="flex-grow px-6 md:px-12 mx-auto max-w-8*l">
+                <Nav></Nav>
+                <Toaster></Toaster>
+                {children}
+              </div>
           </ThemeProvider>
       </body>
     </html>
