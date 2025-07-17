@@ -1,4 +1,3 @@
-
 import {
   boolean,
   timestamp,
@@ -12,6 +11,8 @@ import {
 
   real,
   index
+
+
 
 } from "drizzle-orm/pg-core"
 
@@ -122,6 +123,7 @@ export const products = pgTable("products", {
 })
 
 
+
 export const productVariants = pgTable("productVariants", {
   id: serial("id").primaryKey(),
   color: text("color").notNull(),
@@ -153,7 +155,9 @@ export const variantTags = pgTable("variantTags", {
 
 export const productRelations = relations(products, ({ many }) => ({
   productVariants: many(productVariants, { relationName: "productVariants" }),
+
   reviews: many(reviews, { relationName: "reviews" }),
+
 }))
 
 export const productVariantsRelations = relations(
@@ -183,7 +187,11 @@ export const variantTagsRelations = relations(variantTags, ({ one }) => ({
     references: [productVariants.id],
     relationName: "variantTags",
   }),
+
 }))
+
+}))
+
 
 
 
@@ -226,4 +234,5 @@ export const userRelations = relations(users, ({ many }) => ({
   reviews: many(reviews, { relationName: "user_reviews" }),
   // orders: many(orders, { relationName: "user_orders" }),
 }))
+
 

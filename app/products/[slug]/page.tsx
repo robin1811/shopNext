@@ -8,6 +8,11 @@ import ProductType from "@/components/products/product-type"
 import ProductPick from "@/components/products/product-pick"
 // import ProductPick from "@/components/products/product-pick"
 import ProductShowcase from "@/components/products/product-showcase"
+
+// import Reviews from "@/components/reviews/reviews"
+// import { getReviewAverage } from "@/lib/review-avarage"
+// import Stars from "@/components/reviews/stars"
+
 import Reviews from "@/components/reviews/reviews"
 
 // import Reviews from "@/components/reviews/reviews"
@@ -79,6 +84,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <section className="flex flex-col lg:flex-row gap-4 lg:gap-12">
           <div className="flex-1">
             <ProductShowcase variants={variant.product.productVariants} />
+
+
+            <h1>images</h1>
+
+
           </div>
           <div className="flex  flex-col flex-1">
             <h2 className="text-2xl font-bold">{variant?.product.title}</h2>
@@ -122,6 +132,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </div>
 
             {/* <AddCart /> */}
+
+          </div>
+        </section>
+        {/* <Reviews productID={variant.productID} /> */}
+      </main>
+    )
+  }
+}
+
 
             <AddCart />
 
