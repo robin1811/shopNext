@@ -25,9 +25,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-
-import ProductVariant from "./product-variant"
-
+import {ProductVariant} from "./product-variant"
 
 
 type ProductColumn = {
@@ -122,8 +120,6 @@ export const columns: ColumnDef<ProductColumn>[] = [
                       variant={variant}
                       editMode={true}
                     >
-
-
                       <div
                         className="w-5 h-5 rounded-full"
                         key={variant.id}
@@ -142,18 +138,9 @@ export const columns: ColumnDef<ProductColumn>[] = [
             <Tooltip>
               <TooltipTrigger asChild>
                 <span>
-
-                  {/* <ProductVariant> */}
-                  {/* <ProductVariant > */}
-                  <span className="text-slate-950">
-                    <PlusCircle className="h-5 w-5" />
-                  </span>
-                  {/* </ProductVariant> */}
-
                   <ProductVariant productID={row.original.id} editMode={false}>
                     <PlusCircle className="h-5 w-5" />
                   </ProductVariant>
-
                 </span>
               </TooltipTrigger>
               <TooltipContent>
