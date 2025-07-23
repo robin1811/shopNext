@@ -7,7 +7,7 @@ import { db } from ".."
 import { and, eq } from "drizzle-orm"
 import { reviews } from "../schema"
 import { revalidatePath } from "next/cache"
-
+//This file is for actions
 const action = createSafeActionClient()
 
 export const addReview = action(
