@@ -86,7 +86,9 @@ export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
         setIsLoading(false)
 
 
+
         console.log('save the order')
+
 
         execute({
           status: "pending",
@@ -109,7 +111,9 @@ export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
       <Button
         className=" my-4 w-full"
 
+
         className="my-4  w-full"
+
 
         disabled={!stripe || !elements || isLoading}
       >

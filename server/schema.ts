@@ -277,3 +277,4 @@ export const orderProductRelations = relations(orderProduct, ({ one }) => ({
     relationName: "productVariants",
   }),
 }))
+
