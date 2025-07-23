@@ -8,7 +8,7 @@ import {
 import { db } from "@/server"
 
 import Sales from "./sales"
-// import Earnings from "./earnings"
+import Earnings from "./earnings"
 
 export const revalidate = 0
 
@@ -41,7 +41,7 @@ export default async function Analytics() {
         </CardHeader>
         <CardContent className="flex flex-col lg:flex-row gap-8 ">
           <Sales totalOrders={totalOrders} />
-          {/* <Earnings totalOrders={totalOrders} /> */}
+          <Earnings totalOrders={totalOrders} />
         </CardContent>
       </Card>
     )
