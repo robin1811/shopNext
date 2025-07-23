@@ -25,11 +25,7 @@ import { motion } from "framer-motion"
 import { Star } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useAction } from "next-safe-action/hooks"
-
-// import { addReview } from "@/server/actions/add-review"
-
 import { addReview } from "@/server/actions/add-review"
-
 import { toast } from "sonner"
 import { reviewSchema } from "@/types/reviews-schema"
 
@@ -42,32 +38,6 @@ export default function ReviewsForm() {
     defaultValues: {
       rating: 0,
       comment: "",
-
-    //   productID,
-    },
-  })
-
-//   const { execute, status } = useAction(addReview, {
-//     onSuccess({ error, success }) {
-//       if (error) {
-//         console.log(error)
-//         toast.error(error)
-//       }
-//       if (success) {
-//         toast.success("Review Added 👌")
-//         form.reset()
-//       }
-//     },
-//   })
-
-  function onSubmit(values: z.infer<typeof reviewSchema>) {
-    // execute({
-    //   comment: values.comment,
-    //   rating: values.rating,
-    //   productID,
-    // })
-    console.log("adding the review")
-
       productID,
     },
   })
@@ -92,7 +62,6 @@ export default function ReviewsForm() {
       productID,
     })
     // console.log("adding the review")
-
   }
 
   return (
