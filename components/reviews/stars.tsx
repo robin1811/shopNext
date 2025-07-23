@@ -28,7 +28,7 @@ export default function Stars({
         <span className="text-secondary-foreground font-bold text-sm ml-2">
           {totalReviews} reviews
         </span>
-      ) : null}
+      ) :null}
     </div>
   )
 }

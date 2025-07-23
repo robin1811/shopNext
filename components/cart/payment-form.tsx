@@ -87,7 +87,9 @@ export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
 
 
 
+
         console.log('save the order')
+
 
 
         execute({
@@ -112,7 +114,9 @@ export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
         className=" my-4 w-full"
 
 
+
         className="my-4  w-full"
+
 
 
         disabled={!stripe || !elements || isLoading}
