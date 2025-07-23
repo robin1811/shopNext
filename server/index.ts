@@ -2,6 +2,8 @@ import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import * as schema from '@/server/schema';
 
+//Importing schema from the server 
+
 const sql = neon(process.env.POSTGRES_URL!);
 console.log("POSTGRES_URL:", process.env.POSTGRES_URL);
 if (!process.env.POSTGRES_URL) {
