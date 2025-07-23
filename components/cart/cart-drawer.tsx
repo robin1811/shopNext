@@ -12,6 +12,10 @@ import { AnimatePresence, motion } from "framer-motion"
 import CartItems from "./cart-items"
 import CartMessage from "./cart-message"
 import Payment from "./payment"
+
+
+
+
 import OrderConfirmed from "./order-confirmed"
 
 
@@ -38,8 +42,13 @@ export default function CartDrawer() {
           <ShoppingBag />
         </div>
       </DrawerTrigger>
+
       <DrawerContent className="fixed bottom-0 left-0 max-h-[70vh] min-h-[50vh]">
         <DrawerHeader >
+
+      <DrawerContent className="fixed bottom-0 left-0 max-h-70vh min-h-50vh">
+        <DrawerHeader>
+
           <CartMessage />
           {/* <h1>Cart Progress</h1> */}
         </DrawerHeader>
@@ -51,7 +60,18 @@ export default function CartDrawer() {
         <div className="overflow-auto p-4">
           {checkoutProgress === "cart-page" && <CartItems />}
           {checkoutProgress === "payment-page" && <Payment />}
+
           {checkoutProgress === "confirmation-page" && <OrderConfirmed />}
+
+
+          {checkoutProgress === "confirmation-page" && <OrderConfirmed />}
+
+
+          {checkoutProgress === "confirmation-page" && <OrderConfirmed />}
+
+          {/* {checkoutProgress === "confirmation-page" && <OrderConfirmed />} */}
+
+
         </div>
       </DrawerContent>
     </Drawer>
